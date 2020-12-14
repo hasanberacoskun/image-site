@@ -1,3 +1,6 @@
+body {
+  display: block;
+}
 #items_container {
   display: grid;
   flex-direction: row;
