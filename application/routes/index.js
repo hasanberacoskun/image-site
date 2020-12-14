@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/login', (req, res, next) => {
+  next(new Error('test'));
   res.render("login", {
     title: "Login",
     style: "login.css"

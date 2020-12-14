@@ -10,9 +10,10 @@
     <script defer src="public/js/{{script}}"></script>
     {{/if}}
 	</head>
-
 	<body>
+    {{#unless err_message}}
     {{> navbar}}
+    {{/unless}}
 			  {{{body}}}
 	</body>
 </html>
