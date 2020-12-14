@@ -1,0 +1,16 @@
+<div class="main_flex_container">
+	<h1>Post an Image:</h1>
+	<form>
+		<label for="post_title">Post title:</label>
+			<input type="text" name="post_title"></input>
+			<label for="post_description">Post description:</label>
+			<textarea rows=5 cols="50" name="post_description"></textarea>
+			<label for="image">Image(s):</label>
+			<div class="image_selector">
+				<input type="file" multiple=true accept="image/png, image/jpeg, image/tiff" name="image"></input>
+			</div>
+			<label for="aup_conf">I have read and accept the <a href="/">Acceptable Use Policy</a> for uploading images:</label>
+			<input type="checkbox" name="aup_conf" />
+			<input type="submit" value="Submit Image" class="submit_button"/>
+	</form>
+</div>

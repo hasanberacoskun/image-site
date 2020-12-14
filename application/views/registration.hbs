@@ -1,0 +1,22 @@
+<div class="main_flex_container">
+	<h1>Register for an account</h1>
+	<form>
+			<label for="username">Username</label>
+			<input type="text" name="username" class="username"></input>
+			<span class="error username_error"></span>
+			<label for="email">Email</label>
+			<input type="email" name="email" class="email"></input>
+			<span class="error email_error"></span>
+			<label for="password">Password</label>
+			<input type="password" name="password" class="password"></input>
+			<span class="error password_error"></span>
+			<label for="password_conf">Retype password</label>
+			<input type="password" name="password_conf" class="password_conf"></input>
+			<span class="error password_conf_error"></span>
+			<label for="age_conf">I confirm I am at least 13 years of age:</label>
+		<input type="checkbox" name="age_conf" class="age_conf" required/>
+			<label for="tos_conf">I have read and accept the <a href="/">TOS and privacy rules</a>:</label>
+		<input type="checkbox" name="tos_conf" class="tos_conf" required/>
+		<input type="submit" value="Register" class="register_button"/>
+	</form>
+</div>

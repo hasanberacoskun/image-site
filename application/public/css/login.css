@@ -1,0 +1,76 @@
+h1 {
+  margin-bottom: 40px;
+}
+.main_flex_container {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 25px;
+  background: #cad7e3;
+  box-shadow:  20px 20px 30px #acb7c1,
+               -20px -20px 30px #e8f7ff;
+}
+form {
+  flex-shrink: 1 0 auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  resize: horizontal;
+
+}
+form > label {
+  margin: 15px;
+  margin-bottom: 0px;
+}
+form > input {
+  margin: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border-style: none;
+  background: #cad7e3;
+  box-shadow:  inset 5px 5px 10px #acb7c1,
+               inset -5px -5px 10px #e8f7ff;
+}
+form > input:active {
+  outline-style: none;
+}
+form > input:focus {
+  outline-style: none;
+}
+.login_button {
+  font-weight: bold;
+  padding: 20px;
+  margin: 15px;
+  font-size: 14px;
+  border-style: none;
+  font-size: 14px;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  background: #C2C0D8;
+  box-shadow:  5px 5px 10px #acb7c1,
+               -5px -5px 10px #e8f7ff;
+}
+.login_button:active {
+  font-size: 14px;
+  outline-style: none;
+  background: #C2C0D8;
+  box-shadow:  inset 5px 5px 8px #a5a3b8,
+               inset -5px -5px 8px #dfddf8;
+}
+.login_button:focus {
+  outline-style: none;
+}
+input[type=text] {
+  padding: 10px;
+  border-radius: 10px;
+  border-width: thin;
+  border-color:
+}
+input[type=password] {
+  padding: 10px;
+  border-radius: 10px;
+  border-width: thin;
+}

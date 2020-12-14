@@ -1,0 +1,34 @@
+h1 {
+  margin-bottom: 60px;
+}
+.main_flex_container {
+  padding: 10vh;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+}
+.image_info {
+  margin: 3vh;
+  padding: 5vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background: #C2C0D8;
+  box-shadow:  5px 5px 10px #acb7c1,
+               -5px -5px 10px #e8f7ff;
+}
+img {
+  border-radius: 25px;
+  max-height: 40vw;
+  min-height: 30vw;
+  box-shadow:  20px 20px 30px #acb7c1,
+               -20px -20px 30px #e8f7ff;
+}

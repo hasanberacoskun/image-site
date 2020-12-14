@@ -1,0 +1,32 @@
+#items_container {
+  display: grid;
+  flex-direction: row;
+  grid-template-rows: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0.25em;
+  margin: 4px;
+  width: 100%;
+}
+h1 {
+  margin-bottom: 50px;
+}
+.image_container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 25px;
+  background: #cad7e3;
+  box-shadow:  20px 20px 30px #acb7c1,
+               -20px -20px 30px #e8f7ff;
+}
+img {
+  border-radius: 25px;
+}
+h1 {
+  text-align: center;
+}
+.fading_out {
+  opacity: 1;
+  transition: .5s opacity;
+}
