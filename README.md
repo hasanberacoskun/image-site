@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The purpose is to learn some full stack web development. 
+The purpose is to learn some full stack web development.
 
 ## Student Information
 
@@ -21,7 +21,7 @@ The purpose is to learn some full stack web development.
 
 2. Install MySQL for the database.
 
-   - Modify ` application/config/database.js` to match your database. 
+   - Modify ` application/config/database.js` to match your database.
 
    - Parameters to modify:
 
@@ -35,9 +35,9 @@ The purpose is to learn some full stack web development.
 
    - ```mysql
      CREATE DATABASE IF NOT EXISTS `csc317db`;
-     
+
      USE `csc317db`;
-     
+
      CREATE TABLE IF NOT EXISTS `csc317db`.`users` (
        `id` INT NOT NULL AUTO_INCREMENT,
        `username` VARCHAR(64) NOT NULL,
@@ -51,7 +51,7 @@ The purpose is to learn some full stack web development.
        UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
        UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
      ENGINE = InnoDB;
-     
+
      CREATE TABLE IF NOT EXISTS `csc317db`.`posts` (
        `id` INT NOT NULL AUTO_INCREMENT,
        `title` VARCHAR(128) NOT NULL,
@@ -73,6 +73,6 @@ The purpose is to learn some full stack web development.
      ```
 
 ## Run Instructions
-1. Start database. 
+1. Start database.
 2. Start app using `npm run` in the `application` directory.
 3. Visit `localhost:3000` to view page.

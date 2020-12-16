@@ -25,7 +25,9 @@ router.post('/login', (req, res, next) => {
     if(results && results.length == 1) {
       // when a user is found based on username, we compare password to hashed password
       let hashedPassword = results[0].password;
-      let userId = results[0].id;
+      userId = results[0].id;
+      console.log("User Id: " + userId);
+      console.log("User Name: " + username);
       return bcrypt.compare(password, hashedPassword);
     } else {
       // the username and password pair were not in the database
@@ -39,7 +41,9 @@ router.post('/login', (req, res, next) => {
       successPrint(`User ${username} is logged in`);
       // properly set session
       req.session.username = username;
-      req.session.id = userId;
+      req.session.userid = userId;
+      console.log("User Name from session: " + req.session.username);
+      console.log("User Id from session: " + req.session.userid);
       res.locals.logged = true;
       req.flash('success', "You have been successfully Logged In!");
       res.redirect('/');

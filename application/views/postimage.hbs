@@ -1,6 +1,6 @@
 <div class="main_flex_container">
 	<h1>Post an Image:</h1>
-	<form>
+	<form method="POST" action="/posts/createPost" enctype="multipart/form-data">
 		<label for="post_title">Post title:</label>
 			<input type="text" name="post_title"></input>
 			<label for="post_description">Post description:</label>

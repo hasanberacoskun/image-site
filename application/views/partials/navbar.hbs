@@ -1,11 +1,11 @@
 <ul class="nav">
   {{#if logged}}
   <li>
-    <a id="logout-button" onmouseover="" style="cursor: pointer;">Logout</a>
+    <a id="logout-button" onmouseover="" style="cursor: pointer;">Logout <img src="public/images/box-arrow-left.svg" /></a>
   </li>
   {{else}}
   <li>
-    <a id="login-button" href="/login">Login</a>
+    <a id="login-button" href="/login">Login <img src="public/images/box-arrow-in-right.svg" /></a>
   </li>
   {{/if}}
   {{#if logged}}

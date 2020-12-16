@@ -10,6 +10,7 @@ var handlebars = require('express-handlebars');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var postsRouter = require('./routes/posts');
 
 var errorPrint = require('./helpers/debug/debugprinters').errorPrint;
 var successPrint = require('./helpers/debug/debugprinters').successPrint;
@@ -39,7 +40,7 @@ app.use(sessions({
   key: "csid",
   secret: "I don't like sand. It's coarse and rough and irritating and it gets everywhere.",
   store: mysqlSessionStore,
-  resave: false,
+  resave: true,
   saveUninitialized: false
 }));
 
@@ -68,9 +69,11 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
+
 app.use((err, req, res, next) => {
   res.status(500);
-  res.send('something went wrong with your db');
+  res.send('something went wrong with your db: ' + err);
 })
 
 app.use((err, req, res, next) => {
