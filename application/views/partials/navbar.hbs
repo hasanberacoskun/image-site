@@ -1,11 +1,17 @@
 <ul class="nav">
+  {{#if logged}}
   <li>
-    <a href="">Login</a>
+    <a href="users/logout">Logout</a>
+  </li>
+  {{else}}
+  <li>
+    <a href="/login">Login</a>
+  </li>
+  {{/if}}
+  <li>
+    <a href="/registration">Register</a>
   </li>
   <li>
-    <a href="">Register</a>
-  </li>
-  <li>
-    <a href=""><img src="public/images/house.svg" /></a>
+    <a href="/"><img src="public/images/house.svg" /></a>
   </li>
 </ul >
