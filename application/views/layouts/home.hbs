@@ -11,6 +11,9 @@
     {{/if}}
 	</head>
 	<body>
+    {{#if (notEmptyObject messages)}}
+    {{> flashmessage}}
+    {{/if}}
     {{#unless err_message}}
     {{> navbar}}
     {{/unless}}

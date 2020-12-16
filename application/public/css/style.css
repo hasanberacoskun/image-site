@@ -46,3 +46,19 @@ body {
 .nav a:focus {
   outline-style: none;
 }
+.flash_error_active {
+  color: #DB5461;
+  font-size: 12px;
+  height: 10px;
+}
+.flash_success_active {
+  color: #547856;
+  font-size: 12px;
+  height: 10px;
+}
+#flash-message {
+  padding: 10px;
+}
+#flash-message div{
+  tex-align: center;
+}

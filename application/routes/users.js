@@ -6,9 +6,9 @@ var UserError = require('../helpers/error/UserError');
 var bcrypt = require('bcrypt');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// router.get('/', function(req, res, next) {
+//   res.send('respond with a resource');
+// });
 
 /* LOGIN */
 router.post('/login', (req, res, next) => {
@@ -41,6 +41,7 @@ router.post('/login', (req, res, next) => {
       req.session.username = username;
       req.session.id = userId;
       res.locals.logged = true;
+      req.flash('success', "You have been successfully Logged In!");
       res.redirect('/');
     } else {
       // the username and password pair were not in the database
@@ -52,6 +53,7 @@ router.post('/login', (req, res, next) => {
     errorPrint("user login failed");
     if(err instanceof UserError) {
       errorPrint(err.getMessage());
+      req.flash('error', err.getMessage());
       res.status(err.getStatus());
       res.redirect('/login');
     } else {
@@ -113,6 +115,7 @@ router.post('/register', (req, res, next) => {
     if(results && results.affectedRows) {
       // change this later
       successPrint("User.js --> User was created!");
+      req.flash('success', 'User account has been created!');
       res.redirect('/login');
     } else {
       // something went wrong and nothing was inserted into the database
@@ -128,6 +131,7 @@ router.post('/register', (req, res, next) => {
     errorPrint("user could not be made", err);
     if(err instanceof UserError) {
       errorPrint(err.getMessage());
+      req.flash('error', err.getMessage());
       res.status(err.getStatus());
       res.redirect(err.getRedirectURL());
       next();
