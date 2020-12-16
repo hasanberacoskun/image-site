@@ -16,7 +16,8 @@ router.post('/login', (req, res, next) => {
   let password = req.body.password;
   // DO VALIDATION PROPERLY LATER
   // selecting username from db
-  let baseSQL = "SELECT username, password FROM users WHERE username=?;"
+  let baseSQL = "SELECT id, username, password FROM users WHERE username=?;";
+  let userId;
   db.execute(baseSQL,[username])
   // feed in results and fields from db search
   .then(([results, fields]) => {
@@ -24,7 +25,7 @@ router.post('/login', (req, res, next) => {
     if(results && results.length == 1) {
       // when a user is found based on username, we compare password to hashed password
       let hashedPassword = results[0].password;
-      console.log(hashedPassword);
+      let userId = results[0].id;
       return bcrypt.compare(password, hashedPassword);
     } else {
       // the username and password pair were not in the database
@@ -33,12 +34,14 @@ router.post('/login', (req, res, next) => {
   })
   // feed in passwords matched condition
   .then((passwordsMatched) => {
-    console.log(passwordsMatched);
     if(passwordsMatched) {
       // log the user in
       successPrint(`User ${username} is logged in`);
-      res.locals.logged = true
-      res.render('index');
+      // properly set session
+      req.session.username = username;
+      req.session.id = userId;
+      res.locals.logged = true;
+      res.redirect('/');
     } else {
       // the username and password pair were not in the database
       throw new UserError("Invalid username and/or password!", "/login", 200);
@@ -66,14 +69,12 @@ router.post('/register', (req, res, next) => {
   let age_conf = req.body.age_conf;
   let tos_conf = req.body.tos_conf;
   // DO VALIDATION PROPERLY LATER
-  console.log("selecting username");
   // selecting username from db
   db.execute("SELECT * FROM users WHERE username=?", [username])
   // feed in results and fields from username db search
   .then(([results, fields]) => {
     // if results not found
     if(results && results.length == 0) {
-      console.log("selecting email");
       // selecting email from db
       return db.execute("SELECT * FROM users WHERE email=?", [email]);
     } else {
@@ -87,11 +88,9 @@ router.post('/register', (req, res, next) => {
   })
   // feed in results and fields from email search
   .then(([results, fields]) => {
-    console.log(results.length);
     // if results not found
     if(results && results.length == 0) {
       // hash password and return
-      console.log(password);
       return bcrypt.hash(password, 15);
     } else {
       // email has been found
@@ -104,7 +103,6 @@ router.post('/register', (req, res, next) => {
   })
   // feed in hashed password from promise before
   .then((hashedPassword) => {
-      console.log(hashedPassword);
       // insert user into database with hashed password
       let baseSQL = "INSERT INTO users (username, email, password, created) VALUES (?,?,?,now())";
       return db.execute(baseSQL, [username, email, hashedPassword]);
@@ -137,6 +135,20 @@ router.post('/register', (req, res, next) => {
       next(err);
     }
   })
+});
+
+/* LOGOUT */
+router.post('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if(err) {
+      errorPrint("Session could not be destroyed.");
+    } else {
+      successPrint("Session was destroyed");
+      res.clearCookie('csid');
+      res.json({status: "OK", message: "user is logged out"});
+      res.redirect('/login');
+    }
+  });
 });
 
 module.exports = router;

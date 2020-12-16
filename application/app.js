@@ -2,6 +2,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+var sessions = require('express-session');
+var mysqlSession = require('express-mysql-session')(sessions);
+
 var handlebars = require('express-handlebars');
 
 var indexRouter = require('./routes/index');
@@ -22,6 +26,25 @@ app.engine(
       helpers: {}
   })
 );
+
+// creating session
+var mysqlSessionStore = new mysqlSession({/* using default options */},require('./config/database'));
+app.use(sessions({
+  key: "csid",
+  secret: "I don't like sand. It's coarse and rough and irritating and it gets everywhere.",
+  store: mysqlSessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
+
+// create a middleware for logout button persistence
+app.use((req, res, next) => {
+  if(req.session.username) {
+    res.locals.logged = true;
+  }
+  next();
+});
+
 app.set("view engine", "hbs");
 
 app.use(logger('dev'));

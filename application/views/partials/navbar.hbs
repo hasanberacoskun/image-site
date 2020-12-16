@@ -1,16 +1,19 @@
 <ul class="nav">
   {{#if logged}}
   <li>
-    <a href="users/logout">Logout</a>
+    <a id="logout-button" onmouseover="" style="cursor: pointer;">Logout</a>
   </li>
   {{else}}
   <li>
-    <a href="/login">Login</a>
+    <a id="login-button" href="/login">Login</a>
   </li>
   {{/if}}
+  {{#if logged}}
+  {{else}}
   <li>
-    <a href="/registration">Register</a>
+    <a id="register-button" href="/registration">Register</a>
   </li>
+  {{/if}}
   <li>
     <a href="/"><img src="public/images/house.svg" /></a>
   </li>
