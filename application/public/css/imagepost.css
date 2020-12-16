@@ -6,10 +6,10 @@ h1 {
   padding-top: 10vh;
   padding-bottom: 10vh;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
 }
 .image_info {
   margin: 3vh;
@@ -25,10 +25,10 @@ h1 {
   box-shadow:  5px 5px 10px #acb7c1,
                -5px -5px 10px #e8f7ff;
 }
-img {
+.post-image {
   border-radius: 25px;
-  max-height: 40vw;
-  min-height: 30vw;
+  max-height: 60vh;
+  min-height: 30vh;
   box-shadow:  20px 20px 30px #acb7c1,
                -20px -20px 30px #e8f7ff;
 }
