@@ -23,21 +23,6 @@ form > label {
   margin: 15px;
   margin-bottom: 0px;
 }
-form > input {
-  margin: 10px;
-  font-size: 14px;
-  border-radius: 10px;
-  border-style: none;
-  background: #cad7e3;
-  box-shadow:  inset 5px 5px 10px #acb7c1,
-               inset -5px -5px 10px #e8f7ff;
-}
-form > input:active {
-  outline-style: none;
-}
-form > input:focus {
-  outline-style: none;
-}
 .submit_button {
   font-weight: bold;
   padding: 20px;
@@ -62,12 +47,6 @@ form > input:focus {
 }
 .submit_button:focus {
   outline-style: none;
-}
-input[type=text] {
-  padding: 10px;
-  border-radius: 10px;
-  border-width: thin;
-  border-color:
 }
 input[type=password] {
   padding: 10px;
