@@ -8,7 +8,8 @@ var db = require("../config/database");
 router.get('/', getRecentPosts, function(req, res, next) {
   res.render('index', {
     title: "Home",
-    style: "index.css"
+    style: "index.css",
+    message: "Most recent posts:"
   });
 });
 

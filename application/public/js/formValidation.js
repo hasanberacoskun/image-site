@@ -5,7 +5,7 @@ const specialCharRegex = /[/*-+!@#$^&*]/g;
 const uppercaseRegex = /[A-Z]/g;
 const numberRegex = /[1-9]/g;
 // obtain all needed dom elements
-let form = (document.getElementsByTagName('form'))[0];
+let form = (document.getElementsByClassName('registration-form'))[0];
 let username = (document.getElementsByClassName('username'))[0];
 let email = (document.getElementsByClassName('email'))[0];
 let password = (document.getElementsByClassName('password'))[0];
