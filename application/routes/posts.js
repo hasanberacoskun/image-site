@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database');
 var { errorPrint, successPrint, requestPrint } = require('../helpers/debug/debugprinters');
 var sharp = require('sharp');
 var multer = require('multer');
@@ -25,7 +24,6 @@ var uploader = multer({storage: storage});
 // uploader handles image before create post
 router.post('/createPost', uploader.single("image"), (req, res, next) => {
   let fileUploaded = req.file.path;
-  // create thumbnail using sharp
   let fileAsThumbnail = `thumbnail-${req.file.filename}`;
   let destinationOfThumbnail = req.file.destination + "/" + fileAsThumbnail;
   let title = req.body.post_title;
@@ -35,6 +33,7 @@ router.post('/createPost', uploader.single("image"), (req, res, next) => {
   console.log(description);
   console.log(fk_userId);
   console.log(fileUploaded);
+  // various checks to see if user is allowed to post
   if (fk_userId == '') {
     req.flash("error", "You must be logged in to post.");
     res.redirect('/login');
@@ -50,11 +49,12 @@ router.post('/createPost', uploader.single("image"), (req, res, next) => {
     res.redirect('/postimage');
     next(err);
   }
-  // DO SERVER VALIDATION ON YOUR OWN (make sure post title, description, and foreign key not empty)
+  // create thumbnail using sharp
   sharp(fileUploaded)
   .resize(200)
   .toFile(destinationOfThumbnail)
   .then(() => {
+    // post creation is done in the model
     return PostModel.create(title, description, fileUploaded, destinationOfThumbnail, fk_userId);
   })
   .then((postWasCreated) => {

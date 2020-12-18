@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var isLoggedIn = require('../middleware/routeProtectors').userIsLoggedIn;
 const {getRecentPosts, getPostById, getCommentsByPostId} = require('../middleware/postsmiddleware')
-var db = require("../config/database");
 
 /* GET home page. */
 router.get('/', getRecentPosts, function(req, res, next) {
