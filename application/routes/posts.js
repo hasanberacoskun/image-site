@@ -31,7 +31,25 @@ router.post('/createPost', uploader.single("image"), (req, res, next) => {
   let title = req.body.post_title;
   let description = req.body.post_description;
   let fk_userId = req.session.userid;
-  console.log(fk_userId)
+  console.log(fk_userId);
+  console.log(description);
+  console.log(fk_userId);
+  console.log(fileUploaded);
+  if (fk_userId == '') {
+    req.flash("error", "You must be logged in to post.");
+    res.redirect('/login');
+    next(err);
+  }
+  if (title == '') {
+    req.flash("error", "Title cannot be empty.");
+    res.redirect('/postimage');
+    next(err);
+  }
+  if (description == '') {
+    req.flash("error", "Description cannot be empty.");
+    res.redirect('/postimage');
+    next(err);
+  }
   // DO SERVER VALIDATION ON YOUR OWN (make sure post title, description, and foreign key not empty)
   sharp(fileUploaded)
   .resize(200)

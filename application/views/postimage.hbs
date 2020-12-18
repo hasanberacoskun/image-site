@@ -7,10 +7,10 @@
 			<textarea rows=5 cols="50" name="post_description"></textarea>
 			<label for="image">Image(s):</label>
 			<div class="image_selector">
-				<input type="file" multiple=true accept="image/png, image/jpeg, image/tiff" name="image"></input>
+				<input type="file" accept="image/png, image/jpeg, image/tiff" name="image" required></input>
 			</div>
 			<label for="aup_conf">I have read and accept the <a href="/">Acceptable Use Policy</a> for uploading images:</label>
-			<input type="checkbox" name="aup_conf" />
+			<input type="checkbox" name="aup_conf" required/>
 			<input type="submit" value="Submit Image" class="submit_button"/>
 	</form>
 </div>
