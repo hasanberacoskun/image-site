@@ -70,6 +70,28 @@ The purpose is to learn some full stack web development.
          ON DELETE CASCADE
          ON UPDATE CASCADE)
      ENGINE = InnoDB;
+     
+     CREATE TABLE `csc317db`.`comments` (
+       `id` INT NOT NULL AUTO_INCREMENT,
+       `comment` MEDIUMTEXT NOT NULL,
+       `fk_authorid` INT NOT NULL,
+       `fk_postid` INT NOT NULL,
+       `created` DATETIME NOT NULL DEFAULT now(),
+       PRIMARY KEY (`id`),
+       UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+       INDEX `key_toposttable_idx` (`fk_postid` ASC) VISIBLE,
+       INDEX `key_tousertable_idx` (`fk_authorid` ASC) VISIBLE,
+       CONSTRAINT `key_tousertable`
+         FOREIGN KEY (`fk_authorid`)
+         REFERENCES `csc317db`.`users` (`id`)
+         ON DELETE NO ACTION
+         ON UPDATE NO ACTION,
+       CONSTRAINT `key_toposttable`
+         FOREIGN KEY (`fk_postid`)
+         REFERENCES `csc317db`.`posts` (`id`)
+         ON DELETE NO ACTION
+         ON UPDATE NO ACTION);
+      ENGINE = InnoDB;
      ```
 
 ## Run Instructions
