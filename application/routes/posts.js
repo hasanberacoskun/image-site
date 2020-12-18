@@ -5,6 +5,7 @@ var { errorPrint, successPrint, requestPrint } = require('../helpers/debug/debug
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto');
+var PostModel = require('../models/Posts');
 var PostError = require('../helpers/error/PostError');
 
 var storage = multer.diskStorage({
@@ -36,11 +37,10 @@ router.post('/createPost', uploader.single("image"), (req, res, next) => {
   .resize(200)
   .toFile(destinationOfThumbnail)
   .then(() => {
-    let baseSQL = 'INSERT INTO posts (title, description, photopath, thumbnail, created, fk_userid) VALUE (?, ?, ?, ?, now(), ?);;';
-    return db.execute(baseSQL, [title, description, fileUploaded, destinationOfThumbnail, fk_userId]);
+    return PostModel.create(title, description, fileUploaded, destinationOfThumbnail, fk_userId);
   })
-  .then(([results, fields]) => {
-    if(results && results.affectedRows) {
+  .then((postWasCreated) => {
+    if(postWasCreated) {
       req.flash("success", "Your post was created successfully");
       res.redirect('/');
     } else {
@@ -59,21 +59,18 @@ router.post('/createPost', uploader.single("image"), (req, res, next) => {
   });
 });
 
-router.get('/search', (req, res, next) => {
-  let searchTerm = req.query.search;
-  if(!searchTerm) {
-    res.send({
-      resultsStatus: "info",
-      message: "No search term given",
-      results: []
-    });
-    } else {
-      let baseSQL = 'SELECT id, title, description, thumbnail, concat_ws(" ", title, description) AS haystack FROM posts HAVING haystack like ?;';
-      let sqlReadySearchTerm = "%" + searchTerm + "%";
-      db.execute(baseSQL, [sqlReadySearchTerm])
-      .then(([results, fields]) => {
-        if(results && results.length) {
-          console.log("I'm here");
+router.get('/search', async (req, res, next) => {
+  try {
+    let searchTerm = req.query.search;
+    if(!searchTerm) {
+      res.send({
+        resultsStatus: "info",
+        message: "No search term given",
+        results: []
+      });
+      } else {
+        let results = await PostModel.search(searchTerm)
+        if(results.length) {
           res.render('index', {
             title: "Results",
             style: "index.css",
@@ -82,22 +79,20 @@ router.get('/search', (req, res, next) => {
             results: results
           });
         } else {
-          db.query('SELECT id, title, description, thumbnail, created FROM posts ORDER BY created LIMIT 8;', [])
-          .then(([results, fields]) => {
-            res.render('index', {
-              title: "Results",
-              style: "index.css",
-              resultsStatus: "info",
-              message: "No results were found.",
-              results: results
-            });
-          })
-          .catch((err) => next(err));
+          let results = await PostModel.getNRecentPosts(8);
+          res.locals.results = results;
+          res.render('index', {
+            title: "Results",
+            style: "index.css",
+            resultsStatus: "info",
+            message: "No results match your search.",
+            results: results
+          });
         }
-      })
-      .catch((err) => next(err));
-    }
-
+      }
+  } catch(err) {
+    next(err);
+  }
 });
 
 module.exports = router;
