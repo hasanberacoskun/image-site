@@ -10,50 +10,37 @@ var bcrypt = require('bcrypt');
 router.post('/login', (req, res, next) => {
   let username = req.body.username;
   let password = req.body.password;
-  if (username = '') {
-    // username input is empty
-    req.flash('error', "Please fill in a username.");
-    res.redirect('/login');
-    next(err);
-  }
-  if (password = '') {
-    // password input is empty
-    req.flash('error', "Please fill in a password.");
-    res.redirect('/login');
-    next(err);
-  }
-
-  // user authentication is done in model
-  UserModel.authenticate(username, password)
-  .then((loggedUserId) => {
-    if(loggedUserId > 0) {
-      // log the user in
-      successPrint(`User ${username} is logged in`);
-      // properly set session
-      req.session.username = username;
-      req.session.userid = loggedUserId;
-      console.log("User Name from session: " + req.session.username);
-      console.log("User Id from session: " + req.session.userid);
-      res.locals.logged = true;
-      req.flash('success', "You have been successfully Logged In!");
-      res.redirect('/');
-    } else {
-      // the username and password pair were not in the database
-      throw new UserError("Invalid username and/or password!", "/login", 200);
-    }
-  })
-  // catch any other errors during promise chain
-  .catch((err) => {
-    errorPrint("user login failed");
-    if(err instanceof UserError) {
-      errorPrint(err.getMessage());
-      req.flash('error', err.getMessage());
-      res.status(err.getStatus());
-      res.redirect('/login');
-    } else {
-      next(err);
-    }
-  })
+    // user authentication is done in model
+    UserModel.authenticate(username, password)
+    .then((loggedUserId) => {
+      if(loggedUserId > 0) {
+        // log the user in
+        successPrint(`User ${username} is logged in`);
+        // properly set session
+        req.session.username = username;
+        req.session.userid = loggedUserId;
+        console.log("User Name from session: " + req.session.username);
+        console.log("User Id from session: " + req.session.userid);
+        res.locals.logged = true;
+        req.flash('success', "You have been successfully Logged In!");
+        res.redirect('/');
+      } else {
+        // the username and password pair were not in the database
+        throw new UserError("Invalid username and/or password!", "/login", 200);
+      }
+    })
+    // catch any other errors during promise chain
+    .catch((err) => {
+      errorPrint("user login failed");
+      if(err instanceof UserError) {
+        errorPrint(err.getMessage());
+        req.flash('error', err.getMessage());
+        res.status(err.getStatus());
+        res.redirect('/login');
+      } else {
+        next(err);
+      }
+    });
 });
 
 /* REGISTER */

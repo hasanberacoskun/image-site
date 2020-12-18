@@ -31,13 +31,15 @@ The purpose is to learn some full stack web development.
      - `database`
      - `port`
 
-   - Run the following to create the database:
+   - Use the `application\config\useme.sql` file to import the database into MySQL. Ensure database is selected by double clicking on it in the schemas tab.
 
-   - ```mysql
+   - (alternative, tables will be empty and you will have to populate them) Run the following to create the database:
+   
+  ```mysql
      CREATE DATABASE IF NOT EXISTS `csc317db`;
-
+  
      USE `csc317db`;
-
+     
      CREATE TABLE IF NOT EXISTS `csc317db`.`users` (
        `id` INT NOT NULL AUTO_INCREMENT,
        `username` VARCHAR(64) NOT NULL,
@@ -49,9 +51,9 @@ The purpose is to learn some full stack web development.
        PRIMARY KEY (`id`),
        UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
        UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-       UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+    UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
      ENGINE = InnoDB;
-
+     
      CREATE TABLE IF NOT EXISTS `csc317db`.`posts` (
        `id` INT NOT NULL AUTO_INCREMENT,
        `title` VARCHAR(128) NOT NULL,
@@ -91,10 +93,12 @@ The purpose is to learn some full stack web development.
          REFERENCES `csc317db`.`posts` (`id`)
          ON DELETE NO ACTION
          ON UPDATE NO ACTION);
-      ENGINE = InnoDB;
+      ENGINE = InnoDB;alter
      ```
+   
 
 ## Run Instructions
+
 1. Start database.
 2. Start app using `npm run` in the `application` directory.
 3. Visit `localhost:3000` to view page.
