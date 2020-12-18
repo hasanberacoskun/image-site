@@ -12,9 +12,9 @@
 		<i class="date-posted">{{currentPost.created}}</i>
 	</p>
 	</div>
-		<form class="comment" method="POST" action="/comments/create" enctype="application/x-www-form-urlencoded">
-			<textarea rows=3 cols="60" name="comment"></textarea>
-			<input type="submit" value="Submit Comment" class="submit_button"/>
+		<form class="comment">
+			<textarea rows=3 cols="60" id="comment-box-text"></textarea>
+			<input type="submit" value="Submit Comment" class="submit_button" id="comment-box-button"/>
 			{{#each currentPost.comments}}
 				{{> comment this}}
 			{{/each}}
@@ -27,4 +27,29 @@
 			postedDate.textContent = new Date(postedDate.textContent).toLocaleString();
 		});
 	});
+
+	document.getElementById('comment-box-button').onclick = (event) => {
+		let commentText = document.getElementById('comment-box-text').value;
+		let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+
+		if(!commentText) {
+			return;
+		}
+		let fetchOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type":"Application/json"
+			},
+			body: JSON.stringify({
+				comment:commentText,
+				postId:postId
+			})
+		}
+			fetch('/comments/create', fetchOptions)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch(err => console.log(err));
+	}
 </script>

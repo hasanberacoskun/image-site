@@ -13,7 +13,7 @@ router.post('/create', (req, res, next) => {
   } else {
     let {postId, comment} = req.body;
     let username = req.session.username;
-    let userId = req.session.userId;
+    let userId = req.session.userid;
 
     create(userId, postId, comment)
     .then((wasSuccessful) => {
