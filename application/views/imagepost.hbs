@@ -3,29 +3,28 @@
 	<div class="image_info">
 		<h1>{{currentPost.title}}</h1>
     <p>
-      By <i>{{currentPost.username}}</i>
+      By {{currentPost.username}}
     </p>
 	<p>
 		{{currentPost.description}}
 	</p>
 	<p>
-		On {{currentPost.created}}
+		<i class="date-posted">{{currentPost.created}}</i>
 	</p>
 	</div>
-	<div class="comments">
-		<form class="comment">
-			<textarea rows=3 cols="60" name="comment_text"></textarea>
+		<form class="comment" method="POST" action="/comments/create" enctype="application/x-www-form-urlencoded">
+			<textarea rows=3 cols="60" name="comment"></textarea>
 			<input type="submit" value="Submit Comment" class="submit_button"/>
+			{{#each currentPost.comments}}
+				{{> comment this}}
+			{{/each}}
 		</form>
-		<div class="comment">
-			<p>
-				<strong>Some Name: </strong> Some kind of comment saying something annoying.
-			</p>
-		</div>
-		<div class="comment">
-			<p>
-				<strong>Some Name: </strong> Some kind of comment saying something annoying.
-			</p>
-		</div>
-	</div>
 </div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		document.querySelectorAll('i[class=date-posted]').forEach((postedDate) => {
+			postedDate.textContent = new Date(postedDate.textContent).toLocaleString();
+		});
+	});
+</script>

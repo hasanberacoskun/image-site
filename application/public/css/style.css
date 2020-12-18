@@ -8,7 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
 }
 form > input {
   margin: 10px;
@@ -107,4 +107,7 @@ input[type=text] {
 }
 .submit_button:focus {
   outline-style: none;
+}
+i {
+  opacity: 50%;
 }
