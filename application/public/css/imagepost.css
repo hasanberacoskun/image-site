@@ -32,3 +32,41 @@ h1 {
   box-shadow:  20px 20px 30px #acb7c1,
                -20px -20px 30px #e8f7ff;
 }
+.comment {
+  margin: 3vh;
+  padding: 5vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background: #cad7e3;
+  box-shadow:  5px 5px 10px #acb7c1,
+               -5px -5px 10px #e8f7ff;
+}
+.comments {
+  margin: 3vh;
+  padding: 5vh;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background: #cad7e3;
+  box-shadow:  5px 5px 10px #acb7c1,
+               -5px -5px 10px #e8f7ff;
+}
+form > textarea {
+  padding: 1vh;
+  font-size: 14px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border-style: none;
+  background: #cad7e3;
+  box-shadow:  inset 5px 5px 10px #acb7c1,
+               inset -5px -5px 10px #e8f7ff;
+}

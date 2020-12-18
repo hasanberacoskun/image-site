@@ -83,3 +83,28 @@ input[type=text] {
 #flash-message div{
   tex-align: center;
 }
+.submit_button {
+  font-weight: bold;
+  padding: 20px;
+  margin: 15px;
+  font-size: 14px;
+  border-style: none;
+  font-size: 14px;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10px;
+  background: #C2C0D8;
+  box-shadow:  5px 5px 10px #acb7c1,
+               -5px -5px 10px #e8f7ff;
+}
+.submit_button:active {
+  font-size: 14px;
+  outline-style: none;
+  background: #C2C0D8;
+  box-shadow:  inset 5px 5px 8px #a5a3b8,
+               inset -5px -5px 8px #dfddf8;
+}
+.submit_button:focus {
+  outline-style: none;
+}
