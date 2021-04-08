@@ -9,7 +9,6 @@ The purpose is to learn some full stack web development.
 |               | Information           |
 |:-------------:|:---------------------:|
 | Student Name  | Bera Hasan Coskun     |
-| Student ID    | 920059475             |
 | Student Email | hcoskun@mail.sfsu.edu |
 
 
