@@ -1,16 +1,3 @@
-# CSC 317 Term Project
-
-## Purpose
-
-The purpose is to learn some full stack web development.
-
-## Student Information
-
-|               | Information           |
-|:-------------:|:---------------------:|
-| Student Name  | Bera Hasan Coskun     |
-| Student Email | hcoskun@mail.sfsu.edu |
-
 
 
 # Build/Run Instructions
