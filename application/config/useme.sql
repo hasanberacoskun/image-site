@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: csc317db
+-- Host: 127.0.0.1    Database: photoapp
 -- ------------------------------------------------------
 -- Server version	8.0.22
 

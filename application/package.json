@@ -1,9 +1,9 @@
 {
-  "name": "csc317-termproject",
+  "name": "photo-app",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node --env-file=.env ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
